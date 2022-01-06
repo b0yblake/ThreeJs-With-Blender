@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Begin sence three.js</title>
+		<style>
+			body {margin:0;padding:0}
+		</style>
+	</head>
+	<body>
+		<canvas id="webgl"></canvas>
+
+		<script src="https://threejs.org/build/three.js"></script>
+		<script>
+			// Our Javascript will go here.
+			// console.log(THREE)
+
+			// Select the canvas
+			const canvas = document.getElementById('webgl'); // document.body.appendChild( renderer.domElement );
+
+			// Scene
+			const SCENE = new THREE.Scene();
+
+			//
+			const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+			const material = new THREE.MeshBasicMaterial( { color: 0x13a3f6 } );
+			const mesh = new THREE.Mesh( geometry, material );
+			SCENE.add( mesh );
+
+			// Size of scene
+			const size = {
+				width: 800,
+				height: 600
+			}
+
+			// Camera
+			const camera = new THREE.PerspectiveCamera( 45, size.width / size.height );
+			SCENE.add( camera );
+
+			// Position of camera
+			camera.position.z = 5;
+			camera.position.x = 1;
+			camera.position.y = 1;
+
+			// Rerender
+			const renderer = new THREE.WebGLRenderer({
+				canvas: canvas
+			});
+			renderer.setSize( size.width, size.height ); // window.innerWidth, window.innerHeight
+			renderer.render(SCENE, camera);
+
+		</script>
+	</body>
+</html>
