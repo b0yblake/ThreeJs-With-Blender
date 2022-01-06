@@ -70,6 +70,9 @@ const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
 <img src="thumb-img/threejs-2.jpg" alt="" width="auto" height="auto"><br/>
 
 - `camera.position.*` chúng ta cần quan tâm tới vị trí của camera <br>
+- `Quick tip`: để xác định vị trí trong tọa độ camera, chúng ta có thể sử dụng ảnh sau <br>
+
+<img src="thumb-img/threejs-3.jpg" alt="" width="auto" height="auto"><br/>
 
 ```javascript
 const size = {
