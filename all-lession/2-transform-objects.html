@@ -21,11 +21,17 @@
 			// Scene
 			const SCENE = new THREE.Scene();
 
-			//
 			const geometry = new THREE.BoxGeometry( 1, 1, 1 );
 			const material = new THREE.MeshBasicMaterial( { color: 0x13a3f6 } );
 			const mesh = new THREE.Mesh( geometry, material );
 			SCENE.add( mesh );
+
+			// Mesh position
+			mesh.position.x = 4;
+			mesh.position.y = -1;
+			mesh.position.z = 0;
+
+			console.log('mesh length: ', mesh.position.length())
 
 			// Size of scene
 			const size = {
@@ -38,9 +44,13 @@
 			SCENE.add( camera );
 
 			// Position of camera
-			camera.position.z = 5;
-			camera.position.x = 0;
-			camera.position.y = 0;
+			camera.position.z = 8;
+			camera.position.x = 2;
+			camera.position.y = 1;
+
+			// AxesHelper
+			const AxesHelper = new THREE.AxesHelper(3)
+			SCENE.add(AxesHelper)
 
 			// Rerender
 			const renderer = new THREE.WebGLRenderer({
@@ -50,13 +60,15 @@
 
 			const animate = () => {
 				requestAnimationFrame( animate ); // https://vuilaptrinh.com/2019-05-24-gioi-thieu-ve-request-animation/
-				mesh.rotation.x += 0.01;
-				mesh.rotation.y += 0.01;
+				// mesh.rotation.x += 0.01;
+				// mesh.rotation.y += 0.01;
 
 				renderer.render(SCENE, camera);
 			}
 
 			animate();
+
+
 
 		</script>
 	</body>

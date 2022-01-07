@@ -4,7 +4,7 @@
 1. ThreeJs is a library of 3d models. It controls the model files with ext () and creates a 3d visual view on the website. <br>
 2. The url of the orginal lib: https://threejs.org/ | for React: https://github.com/pmndrs/react-three-fiber | for Vue: https://github.com/troisjs/trois <br>
 3. Its used WEBGL to draw into the canvas tag <br>
-4.  
+4. https://codesandbox.io/u/drcmda <br>
 
 ### First step
 
@@ -26,6 +26,10 @@ console.log(THREE)
 | 2. Some objects     | Object có thể là 1 hình học được vẽ ra(primitive geometries), các model được import vào, các vật rất nhỏ (particles), ánh sáng đặc biệt,.. |
 | 3. A camera         | Camera là điểm nhìn từ mắt tới vật thể                                                                                                     |
 | 4. A renderer       | Renderer là bước cuối để hiển thị scene                                                                                                    |
+
+<img src="thumb-img/threejs-1-1.jpg" alt="" width="auto" height="auto"><br/>
+
+<img src="thumb-img/threejs-1-3.jpg" alt="" width="auto" height="auto"><br/>
 
 1. A scene that will contain objects: Scene là 1 hình thái bao gồm ánh sáng, các đối tượng, các model chứa trong đó
 
@@ -63,11 +67,15 @@ const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
 3. A camera
 
 - https://threejs.org/docs/index.html#api/en/cameras/PerspectiveCamera <br>
-- Có 3-4 loại camera API được tạo ra nhằm phục vụ nhiều mục đích khác nhau <br>
-- `PerspectiveCamera`: là 1 API sử dụng góc camera thông dụng nhất để view các object hiển thị trên scene <br>
-- Có thể sử dụng nhiều loại camera cùng 1 lúc để thể hiện các góc độ khác nhau <br>
 
 <img src="thumb-img/threejs-2.jpg" alt="" width="auto" height="auto"><br/>
+
+- Có 2 loại camera API được tạo ra nhằm phục vụ nhiều mục đích khác nhau <br>
+- `PerspectiveCamera`: là 1 API sử dụng góc camera thông dụng nhất để view các object hiển thị trên scene, với chiều hiển thị giống mắt người <br>
+- `OrthographicCamera`: API sử dụng góc camera mặt phẳng <br>
+- Có thể sử dụng nhiều loại camera cùng 1 lúc để thể hiện các góc độ khác nhau <br>
+
+<img src="thumb-img/threejs-1-2.jpg" alt="" width="auto" height="auto"><br/>
 
 - `camera.position.*` chúng ta cần quan tâm tới vị trí của camera <br>
 - `Quick tip`: để xác định vị trí trong tọa độ camera, chúng ta có thể sử dụng ảnh sau <br>
