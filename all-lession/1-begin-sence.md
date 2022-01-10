@@ -5,6 +5,7 @@
 2. The url of the orginal lib: https://threejs.org/ | for React: https://github.com/pmndrs/react-three-fiber | for Vue: https://github.com/troisjs/trois <br>
 3. Its used WEBGL to draw into the canvas tag <br>
 4. https://codesandbox.io/u/drcmda <br>
+5. https://cs.wellesley.edu/~cs307/schedule.html <br>
 
 ### First step
 

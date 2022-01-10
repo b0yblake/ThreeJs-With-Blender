@@ -1,80 +1,85 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Begin sence three.js</title>
-		<style>
-			body {margin:0;padding:0}
-		</style>
-	</head>
-	<body>
-		<canvas id="webgl"></canvas>
+  <head>
+    <meta charset="utf-8" />
+    <title>Begin sence three.js</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="webgl"></canvas>
 
-		<script src="https://threejs.org/build/three.js"></script>
-		<script>
-			// Our Javascript will go here.
-			// console.log(THREE)
+    <script src="https://threejs.org/build/three.js"></script>
+    <script>
+      // Our Javascript will go here.
+      // console.log(THREE)
 
-			// Select the canvas
-			const canvas = document.getElementById('webgl'); // document.body.appendChild( renderer.domElement );
+      // Select the canvas
+      const canvas = document.getElementById("webgl"); // document.body.appendChild( renderer.domElement );
 
-			// Scene
-			const SCENE = new THREE.Scene();
+      // Scene
+      const SCENE = new THREE.Scene();
 
-			const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-			const material = new THREE.MeshBasicMaterial( { color: 0x13a3f6 } );
-			const mesh = new THREE.Mesh( geometry, material );
-			SCENE.add( mesh );
+      const geometry = new THREE.BoxGeometry(1, 1, 1);
+      const material = new THREE.MeshBasicMaterial({ color: 0x13a3f6 });
+      const mesh = new THREE.Mesh(geometry, material);
+      SCENE.add(mesh);
 
-			// Mesh position
-			mesh.position.x = 2;
-			mesh.position.y = -1;
-			mesh.position.z = 0;
+      // Mesh position
+      mesh.position.x = 2;
+      mesh.position.y = -1;
+      mesh.position.z = 0;
 
-			console.log('mesh length: ', mesh.position.length())
+      console.log("mesh length: ", mesh.position.length());
 
-			// Size of scene
-			const size = {
-				width: 800,
-				height: 600
-			}
+      // Size of scene
+      const size = {
+        width: 800,
+        height: 600,
+      };
 
-			// Camera
-			const camera = new THREE.PerspectiveCamera( 45, size.width / size.height );
-			SCENE.add( camera );
+      // Camera
+      const camera = new THREE.PerspectiveCamera(
+        45,
+        size.width / size.height,
+        1,
+        1000
+      );
+      SCENE.add(camera);
 
-			// Position of camera
-			camera.position.z = 8;
-			camera.position.x = 2;
-			camera.position.y = 1;
+      // Position of camera
+      camera.position.z = 8;
+      camera.position.x = 2;
+      camera.position.y = 1;
 
-			// AxesHelper
-			const AxesHelper = new THREE.AxesHelper(3)
-			SCENE.add(AxesHelper)
+      // AxesHelper
+      const AxesHelper = new THREE.AxesHelper(3);
+      SCENE.add(AxesHelper);
 
-			// Rerender
-			const renderer = new THREE.WebGLRenderer({
-				canvas: canvas
-			});
-			renderer.setSize( size.width, size.height ); // window.innerWidth, window.innerHeight
+      // Rerender
+      const renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+      });
+      renderer.setSize(size.width, size.height); // window.innerWidth, window.innerHeight
 
-			let time = Date.now()
+      let time = Date.now();
 
-			const animate = () => {
-				const currentTime = Date.now();
-				const deltaTime = currentTime - time; // console.log('deltaTime: ', deltaTime)
-				time = currentTime;
+      const animate = () => {
+        const currentTime = Date.now();
+        const deltaTime = currentTime - time; // console.log('deltaTime: ', deltaTime)
+        time = currentTime;
 
-				mesh.rotation.x += 0.0005 * deltaTime;
-				mesh.rotation.y += 0.0005 * deltaTime;
+        mesh.rotation.x += 0.0005 * deltaTime;
+        mesh.rotation.y += 0.0005 * deltaTime;
 
-				requestAnimationFrame(animate);
-				renderer.render(SCENE, camera);
-			}
-			animate();
-
-
-
-		</script>
-	</body>
+        requestAnimationFrame(animate);
+        renderer.render(SCENE, camera);
+      };
+      animate();
+    </script>
+  </body>
 </html>
