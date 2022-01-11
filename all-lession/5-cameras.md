@@ -34,10 +34,30 @@ scene.add(camera);
 ```
 
 - Giá trị `45` là góc độ (Field of view === fov), fov càng lớn thì tầm nhìn càng lớn => object càng nhỏ <br>
+- Hãy tưởng tượng, góc độ mắt người nhìn trực diện sẽ lấy được 60% lên phía trên, 70-75% xuống phía dưới. Vậy khi set `fov = 45` => góc độ mắt sẽ lấy ~23 độ lên trên + dưới <br>
 
 <img src="thumb-img/threejs-5-2.jpg" alt="" width="auto" height="auto"> <br>
 
 <img src="thumb-img/threejs-5-1.jpg" alt="" width="auto" height="auto"> <br>
 
 - Giá trị `aspect` là tỷ lệ w/h của scence hiển thị, nó sẽ ảnh hưởng đến kích thước của object nếu tỷ lệ thay đổi <br>
-- 
+- 2 giá trị cuối `1, 1000` là tỷ lệ của `near` & `far` <br>
+
+2. `Orthographic Camera`
+
+- Dạng camera này khá quan trọng, có thể làm 1 số website theo motion của mouse <br>
+- https://threejs.org/docs/#api/en/cameras/OrthographicCamera <br>
+-
+
+```javascript
+const aspectRatio = sizes.width / sizes.height; //Sử dụng aspectRatio nhằm mục đích xác định được tỷ lệ của object so với scence, không bị méo hình
+const camera = new THREE.OrthographicCamera(
+  -1 * aspectRatio,
+  1 * aspectRatio,
+  1,
+  -1,
+  1,
+  1000
+);
+scene.add(camera);
+```
