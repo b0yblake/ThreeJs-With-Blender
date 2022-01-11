@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <title>Begin sence three.js</title>
     <style>
-      body {
+      body,
+      html {
         margin: 0;
         padding: 0;
       }
@@ -17,6 +18,23 @@
     <script>
       // Our Javascript will go here.
       // console.log(THREE)
+
+      const cursorState = {
+        x: 0,
+        y: 0,
+      };
+
+      // Size of scene, we can fixed or get full view
+      const size = {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      };
+
+      window.addEventListener("mousemove", (e) => {
+        // console.log("pos: ", e.clientX, e.clientY);
+        cursorState.x = e.clientX / size.width - 0.5;
+        cursorState.y = -(e.clientY / size.height - 0.5);
+      });
 
       // Select the canvas
       const canvas = document.getElementById("webgl"); // document.body.appendChild( renderer.domElement );
@@ -34,13 +52,7 @@
       mesh.position.y = -1;
       mesh.position.z = 0;
 
-      console.log("mesh length: ", mesh.position.length());
-
-      // Size of scene
-      const size = {
-        width: 800,
-        height: 600,
-      };
+      // console.log("mesh length: ", mesh.position.length());
 
       // Camera
       const camera = new THREE.PerspectiveCamera(
@@ -52,7 +64,7 @@
       SCENE.add(camera);
 
       // Position of camera
-      camera.position.z = 8;
+      camera.position.z = 10;
       camera.position.x = 2;
       camera.position.y = 1;
 
@@ -66,15 +78,12 @@
       });
       renderer.setSize(size.width, size.height); // window.innerWidth, window.innerHeight
 
-      let time = Date.now();
-
       const animate = () => {
-        const currentTime = Date.now();
-        const deltaTime = currentTime - time; // console.log('deltaTime: ', deltaTime)
-        time = currentTime;
+        camera.position.x = cursorState.x * 3;
+        camera.position.y = cursorState.y * 3;
 
-        mesh.rotation.x += 0.0005 * deltaTime;
-        mesh.rotation.y += 0.0005 * deltaTime;
+        // We can view it at 0, 0, 0
+        camera.lookAt(new THREE.Vector3());
 
         requestAnimationFrame(animate);
         renderer.render(SCENE, camera);
