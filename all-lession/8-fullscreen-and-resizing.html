@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Begin sence three.js</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      #webgl {
+        position: absolute;
+        top: 0;
+        left: 0;
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="webgl"></canvas>
+
+    <script src="https://threejs.org/build/three.js"></script>
+    <script>
+      // Our Javascript will go here.
+      // console.log(THREE)
+
+      const cursorState = {
+        x: 0,
+        y: 0,
+      };
+
+      // Size of scene, we can fixed or get full view
+      const size = {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      };
+
+      // Select the canvas
+      const canvas = document.getElementById("webgl"); // document.body.appendChild( renderer.domElement );
+
+      // Scene
+      const SCENE = new THREE.Scene();
+
+      const geometry = new THREE.BoxGeometry(1, 1, 1);
+      const material = new THREE.MeshBasicMaterial({ color: 0x13a3f6 });
+      const mesh = new THREE.Mesh(geometry, material);
+      SCENE.add(mesh);
+
+      // Mesh position
+      mesh.position.x = 2;
+      mesh.position.y = -1;
+      mesh.position.z = 0;
+
+      // console.log("mesh length: ", mesh.position.length());
+
+      // Camera
+      const camera = new THREE.PerspectiveCamera(
+        45,
+        size.width / size.height,
+        1,
+        1000
+      );
+      SCENE.add(camera);
+
+      // Position of camera
+      camera.position.z = 10;
+      camera.position.x = 2;
+      camera.position.y = 1;
+
+      // AxesHelper
+      const AxesHelper = new THREE.AxesHelper(3);
+      SCENE.add(AxesHelper);
+
+      // Rerender
+      const renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+      });
+      renderer.setSize(size.width, size.height); // window.innerWidth, window.innerHeight
+
+      window.addEventListener("resize", () => {
+        // console.log("window resizing");
+
+        // When resizing:
+        // 1. We update the width & height of scence
+        size.width = window.innerWidth;
+        size.height = window.innerHeight;
+
+        // 2. Update the camera ratio
+        camera.aspect = size.width / size.height;
+        camera.updateProjectionMatrix();
+
+        // 3. Update renderer
+        renderer.setSize(size.width, size.height);
+
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      });
+
+      window.addEventListener("mousemove", (e) => {
+        // console.log("pos: ", e.clientX, e.clientY);
+        cursorState.x = e.clientX / size.width - 0.5;
+        cursorState.y = -(e.clientY / size.height - 0.5);
+      });
+
+      const animate = () => {
+        camera.position.x = cursorState.x * 3;
+        camera.position.y = cursorState.y * 3;
+
+        // We can view it at 0, 0, 0
+        camera.lookAt(new THREE.Vector3());
+
+        requestAnimationFrame(animate);
+        renderer.render(SCENE, camera);
+      };
+      animate();
+    </script>
+  </body>
+</html>
